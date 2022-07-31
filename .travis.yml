@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true polemarchus/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-react"
+  env: "dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-913704413942"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_access_ID
+  secret_access_key: "$AWS_secret"
